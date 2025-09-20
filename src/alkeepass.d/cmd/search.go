@@ -34,25 +34,11 @@ func searchMain(cmd *cobra.Command, args []string) {
 	keyfilepath := os.Getenv("keepassxc_keyfile_path")
 	passwd := strings.TrimSpace(os.Getenv("keepassxc_master_password"))
 
-	var cred *gokeepasslib.DBCredentials
-
-	if passwd != "" {
-		if keyfilepath != "" {
-			// password and keyfile
-			cred, _ = gokeepasslib.NewPasswordAndKeyCredentials(passwd, keyfilepath)
-		} else {
-			// password only
-			cred = gokeepasslib.NewPasswordCredentials(passwd)
-		}
-	} else {
-		if keyfilepath != "" {
-			// keyfile only
-			cred, _ = gokeepasslib.NewKeyCredentials(keyfilepath)
-		} else {
-			// all blank
-			panic("Your must either configure `keepassxc_master_password` or `keepassxc_keyfile_path`")
-		}
-	}
+	// password and keyfile
+	// password only
+	// keyfile only
+	// all blank
+	cred := getCred(passwd, keyfilepath)
 
 	alf := search(kbdxpath, cred, args)
 	s, _ := json.Marshal(alf)
@@ -82,25 +68,7 @@ func getMain(cmd *cobra.Command, args []string) {
 	keyfilepath := os.Getenv("keepassxc_keyfile_path")
 	passwd := strings.TrimSpace(os.Getenv("keepassxc_master_password"))
 
-	var cred *gokeepasslib.DBCredentials
-
-	if passwd != "" {
-		if keyfilepath != "" {
-			// password and keyfile
-			cred, _ = gokeepasslib.NewPasswordAndKeyCredentials(passwd, keyfilepath)
-		} else {
-			// password only
-			cred = gokeepasslib.NewPasswordCredentials(passwd)
-		}
-	} else {
-		if keyfilepath != "" {
-			// keyfile only
-			cred, _ = gokeepasslib.NewKeyCredentials(keyfilepath)
-		} else {
-			// all blank
-			panic("Your must either configure `keepassxc_master_password` or `keepassxc_keyfile_path`")
-		}
-	}
+	cred := getCred(passwd, keyfilepath)
 
 	file, _ := os.Open(kbdxpath)
 	defer file.Close()
@@ -249,7 +217,6 @@ func readEntries(kpe []KPEntry, query []string) *AlfredJSON {
 				CmdAlt:   AlfredModItem{Arg: path, Icon: &AlfredIcon{Path: "./icon-na.png"}},
 				Ctrl:     AlfredModItem{Arg: path, Valid: true},
 			},
-
 			Arg: path,
 		}
 
@@ -260,11 +227,13 @@ func readEntries(kpe []KPEntry, query []string) *AlfredJSON {
 		if entry.Entry.GetContent("UserName") != "" {
 			item.Mods.Cmd.Valid = true
 			item.Mods.Cmd.Icon = nil
+			item.Mods.Cmd.Arg = entry.Entry.GetContent("UserName")
 		}
 		if entry.Entry.GetContent("URL") != "" {
 			item.Mods.Alt.Valid = true
 			item.Mods.AltShift.Valid = true
 			item.Mods.Alt.Icon = nil
+			item.Mods.Alt.Arg = entry.Entry.GetContent("URL")
 			item.Mods.AltShift.Icon = nil
 		}
 		if entry.Entry.GetContent("Notes") != "" {
@@ -304,7 +273,6 @@ func scan(groups *[]gokeepasslib.Group, path []string, args []string, result *[]
 			dup2 := make([]string, len(dup1))
 			copy(dup2, dup1)
 			dup2 = append(dup2, vd.Value.Content)
-
 			*result = append(*result, KPEntry{
 				Path:  dup2,
 				Entry: ent,
