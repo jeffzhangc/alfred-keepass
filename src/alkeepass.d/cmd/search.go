@@ -227,13 +227,13 @@ func readEntries(kpe []KPEntry, query []string) *AlfredJSON {
 		if entry.Entry.GetContent("UserName") != "" {
 			item.Mods.Cmd.Valid = true
 			item.Mods.Cmd.Icon = nil
-			item.Mods.Cmd.Arg = entry.Entry.GetContent("UserName")
+			// item.Mods.Cmd.Arg = entry.Entry.GetContent("UserName")
 		}
 		if entry.Entry.GetContent("URL") != "" {
 			item.Mods.Alt.Valid = true
 			item.Mods.AltShift.Valid = true
 			item.Mods.Alt.Icon = nil
-			item.Mods.Alt.Arg = entry.Entry.GetContent("URL")
+			// item.Mods.Alt.Arg = entry.Entry.GetContent("URL")
 			item.Mods.AltShift.Icon = nil
 		}
 		if entry.Entry.GetContent("Notes") != "" {

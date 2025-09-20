@@ -71,6 +71,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>17EE61E5-2529-41D8-9215-B6AF6BC87295</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>5FFF8703-6DC1-4BFA-ABF6-986FC93275B4</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>188CE593-8A77-4A25-BA7E-328FF7141356</key>
 		<array>
 			<dict>
@@ -157,18 +170,7 @@
 			</dict>
 		</array>
 		<key>3245CC2C-FC62-43E6-B01A-ED1B0EA3934E</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>5FFF8703-6DC1-4BFA-ABF6-986FC93275B4</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
+		<array/>
 		<key>32D2AA5B-72CB-4C76-84ED-20EFCC856405</key>
 		<array>
 			<dict>
@@ -273,7 +275,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>3245CC2C-FC62-43E6-B01A-ED1B0EA3934E</string>
+				<string>17EE61E5-2529-41D8-9215-B6AF6BC87295</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -737,6 +739,35 @@ echo "$keepassxc_master_password" | $keepassxc_cli_path attachment-export "$keep
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>q=$(echo "$ITEM_PATH" | iconv -f UTF-8-MAC -t UTF-8)
+#echo "$q"
+#echo "$keepassxc_master_password" | $keepassxc_cli_path clip -b -a $ATTR "$keepassxc_db_path" "$q" 0
+
+
+./alkeepass getAttr "$q" $ATTR
+# echo "test"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>03C52792-311C-4DBC-BC07-60BBD02AD330</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>argument</key>
 				<string></string>
 				<key>passthroughargument</key>
@@ -774,35 +805,6 @@ echo "$keepassxc_master_password" | $keepassxc_cli_path attachment-export "$keep
 			<string>8084D90E-8740-41C3-B3B8-6DC926792661</string>
 			<key>version</key>
 			<integer>3</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>102</integer>
-				<key>script</key>
-				<string>q=$(echo "$ITEM_PATH" | iconv -f UTF-8-MAC -t UTF-8)
-#echo "$q"
-#echo "$keepassxc_master_password" | $keepassxc_cli_path clip -b -a $ATTR "$keepassxc_db_path" "$q" 0
-
-
-./alkeepass getAttr "$q" $ATTR
-# echo "test"</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>03C52792-311C-4DBC-BC07-60BBD02AD330</string>
-			<key>version</key>
-			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -913,6 +915,35 @@ echo "$keepassxc_master_password" | $keepassxc_cli_path attachment-export "$keep
 			<string>0439D588-D780-4261-B62C-044F3F87014F</string>
 			<key>version</key>
 			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>q=$(echo "$ITEM_PATH" | iconv -f UTF-8-MAC -t UTF-8)
+#echo "$q"
+#echo "$keepassxc_master_password" | $keepassxc_cli_path clip -b -a $ATTR "$keepassxc_db_path" "$q" 0
+
+
+./alkeepass getAttr "$q" $ATTR
+# echo "test"</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>17EE61E5-2529-41D8-9215-B6AF6BC87295</string>
+			<key>version</key>
+			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1214,9 +1245,9 @@ Alternatively you can also copy `username` and `URL` by holding CMD or ALT befor
 			<key>note</key>
 			<string>run keepassxc-cli to copy an attribute</string>
 			<key>xpos</key>
-			<real>1180</real>
+			<real>1000</real>
 			<key>ypos</key>
-			<real>545</real>
+			<real>525</real>
 		</dict>
 		<key>0439D588-D780-4261-B62C-044F3F87014F</key>
 		<dict>
@@ -1266,6 +1297,15 @@ Alternatively you can also copy `username` and `URL` by holding CMD or ALT befor
 			<key>ypos</key>
 			<real>80</real>
 		</dict>
+		<key>17EE61E5-2529-41D8-9215-B6AF6BC87295</key>
+		<dict>
+			<key>note</key>
+			<string>run keepassxc-cli to copy an attribute</string>
+			<key>xpos</key>
+			<real>925</real>
+			<key>ypos</key>
+			<real>730</real>
+		</dict>
 		<key>188CE593-8A77-4A25-BA7E-328FF7141356</key>
 		<dict>
 			<key>xpos</key>
@@ -1292,9 +1332,9 @@ Alternatively you can also copy `username` and `URL` by holding CMD or ALT befor
 		<key>3245CC2C-FC62-43E6-B01A-ED1B0EA3934E</key>
 		<dict>
 			<key>xpos</key>
-			<real>840</real>
+			<real>625</real>
 			<key>ypos</key>
-			<real>745</real>
+			<real>785</real>
 		</dict>
 		<key>32D2AA5B-72CB-4C76-84ED-20EFCC856405</key>
 		<dict>
