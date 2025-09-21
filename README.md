@@ -1,4 +1,5 @@
 # Alfred KeePass Workflow
+
 This Alfred workflow allows you to quickly search and copy passwords from your KeePass database without having to open the KeePass application.
 
 [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Alfred%205%20Workflow%20to%20quickly%20search%20and%20copy%20KeePass%20attributes.&hashtags=Alfred,KeePassXC&url=https://github.com/mikyk10/alfred-keepass) <img src="https://img.shields.io/github/last-commit/mikyk10/alfred-keepass"> <img src="https://img.shields.io/github/downloads/mikyk10/alfred-keepass/total">
@@ -7,13 +8,14 @@ This Alfred workflow allows you to quickly search and copy passwords from your K
 
 ## Features
 
-- Built on Golang for faster search performance. 
+- Built on Golang for faster search performance.
 - KDB3 and KDB4 are supported.
 - TOTP, attributes and attached files are supported powered by keepassxc-cli
 - Fuzzy search for the faster result
 - Simple and intuitive interface.
 
 ## Installation
+
 1. [Download the .alfredworkflow](https://github.com/mikyk10/alfred-keepass/tags) file from the [releases](https://github.com/mikyk10/alfred-keepass/tags) section.
 2. Double click the downloaded file to import it into Alfred.
 
@@ -30,6 +32,7 @@ ln -s /Applications/KeePassXC.app//Contents/MacOS/keepassxc-cli /usr/local/bin
 ```
 
 ## Usage
+
 1. Trigger Alfred by pressing the Alfred hotkey.
 2. Type `kp` followed by the name of the password you are searching for.
 3. Select the desired password from the list of results.
@@ -39,26 +42,35 @@ Alternatively you can also copy `username` and `URL` by holding CMD or ALT befor
 
 ## Limitation
 
-* Currently `master password` encrypted .kdbx is supported. Not much tested yet.
+- Currently `master password` encrypted .kdbx is supported. Not much tested yet.
 
 ## Requirements
 
-* Alfred 5 or later with the Powerpack upgrade.
-* A KeePass database.
-* KeepassXC for TOTP.
+- Alfred 5 or later with the Powerpack upgrade.
+- A KeePass database.
+- KeepassXC for TOTP.
 
 ## Contribution
+
 I am very welcome any contributions to improve it. If you have any bug reports, feature requests, or code contributions, please open an issue or pull request on the GitHub repository.
 
 If you add a new feature, please make sure that any code comes with a working test suite as much as you can to ensure the quality and reliability of the code. This will help to maintain the high standards of the project and ensure that any changes are thoroughly tested.
 
 ### Prerequisites
+
 Knowledge of Go programming language is required to contribute to this Alfred workflow. Please make sure to have Go installed on your development machine.
 
 ## Disclaimer
+
 This Alfred workflow is provided "as is" with no express or implied warranties. The authors and copyright holders are not responsible for any liability arising from the use of this software. By using it, you agree to take full responsibility for any consequences that may arise.
 
 Please note that this workflow has not yet been fully confirmed not to contain any malicious code across all dependencies.
 
 ## TODO
-* Write `README.md`
+
+- Write `README.md`
+
+---
+
+1. 添加使用 getAttr 获取属性信息
+2. alfred 配置 copy to clipboard with transient，不留粘贴板历史
