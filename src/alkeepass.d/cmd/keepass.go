@@ -21,7 +21,6 @@ func openKbdx(rd io.Reader, credentials *gokeepasslib.DBCredentials) (*gokeepass
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
-
 	return db, nil
 }
 

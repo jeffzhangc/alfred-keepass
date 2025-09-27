@@ -284,6 +284,19 @@
 				<false/>
 			</dict>
 		</array>
+		<key>95B2A75A-BB9B-4441-9050-1ED32A35BC2A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>F8154252-C0CC-45CA-912F-7D2C61796DE6</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>B64F5820-7244-48F3-B6F5-CC1E84773482</key>
 		<array>
 			<dict>
@@ -1194,6 +1207,63 @@ fi</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string># 解析参数
+# 格式: username password [title] [url] [notes] [group]
+IFS=' ' read -r -a args &lt;&lt;&lt; "$1"
+
+# 提取参数
+username="${args[0]}"
+password="${args[1]}"
+title="${args[2]:-${args[0]}}"  # 默认使用用户名作为标题
+url="${args[3]:-}"
+notes="${args[4]:-}"
+group="${args[5]:-temp/General}"
+
+# 调用 程序
+./alkeepass add -u "$username" -p "$password" -t "$title" -l "$url" -n "$notes" -g "$group"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>F8154252-C0CC-45CA-912F-7D2C61796DE6</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>{var:alf_keyword}:add</string>
+				<key>subtext</key>
+				<string>Usage: username password [title] [url] [notes] [group]</string>
+				<key>text</key>
+				<string>Add KeePass Entry</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>95B2A75A-BB9B-4441-9050-1ED32A35BC2A</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>lastpathcomponent</key>
 				<false/>
 				<key>onlyshowifquerypopulated</key>
@@ -1392,6 +1462,15 @@ Alternatively you can also copy `username` and `URL` by holding CMD or ALT befor
 			<key>ypos</key>
 			<real>1370</real>
 		</dict>
+		<key>95B2A75A-BB9B-4441-9050-1ED32A35BC2A</key>
+		<dict>
+			<key>note</key>
+			<string>Check for updates for the workflow.</string>
+			<key>xpos</key>
+			<real>145</real>
+			<key>ypos</key>
+			<real>1335</real>
+		</dict>
 		<key>9C41C249-8B02-4268-9DC1-9C75F4AA2FCB</key>
 		<dict>
 			<key>xpos</key>
@@ -1475,6 +1554,13 @@ Alternatively you can also copy `username` and `URL` by holding CMD or ALT befor
 			<key>ypos</key>
 			<real>525</real>
 		</dict>
+		<key>F8154252-C0CC-45CA-912F-7D2C61796DE6</key>
+		<dict>
+			<key>xpos</key>
+			<real>525</real>
+			<key>ypos</key>
+			<real>1335</real>
+		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
 	<array>
@@ -1556,7 +1642,7 @@ Alternatively you can also copy `username` and `URL` by holding CMD or ALT befor
 		<string>keepassxc_cli_path</string>
 	</array>
 	<key>version</key>
-	<string>0.1.2</string>
+	<string>0.1.2-8-gfcae2b1</string>
 	<key>webaddress</key>
 	<string>https://github.com/mikyk10/alfred-keepass</string>
 </dict>

@@ -10,4 +10,5 @@ func init() {
 	RootCmd.AddCommand(searchCmd)
 	RootCmd.AddCommand(getCmd)
 	RootCmd.AddCommand(getAttrCmd)
+	RootCmd.AddCommand(addCmd)
 }
